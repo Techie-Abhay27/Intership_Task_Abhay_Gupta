@@ -1,0 +1,180 @@
+MariaDB [(none)]> use rideing_vechicle
+Database changed
+MariaDB [rideing_vechicle]> show tables;
++----------------------------+
+| Tables_in_rideing_vechicle |
++----------------------------+
+| drivers                    |
+| payments                   |
+| riders                     |
+| rides                      |
++----------------------------+
+4 rows in set (0.001 sec)
+
+MariaDB [rideing_vechicle]> select * from drivers;
++----------+-----------+----------+------------+-----------+-------------+--------+
+| DriverID | FirstName | LastName | Phone      | City      | VehicleType | Rating |
++----------+-----------+----------+------------+-----------+-------------+--------+
+|        1 | Rajesh    | Sharma   | 9876543210 | Delhi     | Sedan       |    4.5 |
+|        2 | Anita     | Verma    | 9876543211 | Mumbai    | SUV         |    4.8 |
+|        3 | Vikram    | Singh    | 9876543212 | Bangalore | Hatchback   |    4.2 |
+|        4 | Priya     | Nair     | 9876543213 | Chennai   | Sedan       |    4.7 |
+|        5 | Amit      | Gupta    | 9876543214 | Kolkata   | SUV         |    4.6 |
+|        6 | Ramesh    | Patel    | 9876543215 | Ahmedabad | Hatchback   |    4.3 |
+|        7 | Sunita    | Rao      | 9876543216 | Pune      | Sedan       |    4.9 |
+|        8 | Arjun     | Mehta    | 9876543217 | Hyderabad | SUV         |    4.1 |
+|        9 | Kiran     | Joshi    | 9876543218 | Jaipur    | Hatchback   |    4.4 |
+|       10 | Manoj     | Desai    | 9876543219 | Lucknow   | Sedan       |    4.0 |
++----------+-----------+----------+------------+-----------+-------------+--------+
+10 rows in set (0.080 sec)
+
+MariaDB [rideing_vechicle]> select * from payments;
++-----------+--------+---------------+--------+---------------------+
+| PaymentID | RideID | PaymentMethod | Amount | PaymentDate         |
++-----------+--------+---------------+--------+---------------------+
+|         1 |      1 | Card          | 520.00 | 2023-12-01 09:45:00 |
+|         2 |      2 | Cash          | 600.00 | 2023-11-30 14:50:00 |
+|         3 |      3 | Wallet        | 450.00 | 2023-12-02 09:10:00 |
+|         4 |      4 | Card          | 390.00 | 2023-11-29 18:50:00 |
+|         5 |      6 | Cash          | 270.00 | 2023-12-03 08:00:00 |
+|         6 |      7 | Card          | 220.00 | 2023-11-27 16:35:00 |
+|         7 |      8 | Wallet        | 310.00 | 2023-12-01 13:30:00 |
+|         8 |      9 | Card          | 380.00 | 2023-11-30 09:30:00 |
+|         9 |     10 | Cash          | 180.00 | 2023-11-25 10:50:00 |
+|        10 |      5 | Card          |   0.00 | 2023-11-28 11:30:00 |
++-----------+--------+---------------+--------+---------------------+
+10 rows in set (0.003 sec)
+
+MariaDB [rideing_vechicle]> select * from riders;
++---------+-----------+----------+------------+-----------+------------+
+| RiderID | FirstName | LastName | Phone      | City      | JoinDate   |
++---------+-----------+----------+------------+-----------+------------+
+|       1 | Sandeep   | Yadav    | 9123456780 | Delhi     | 2023-06-15 |
+|       2 | Meena     | Kumari   | 9123456781 | Mumbai    | 2023-05-20 |
+|       3 | Ravi      | Sharma   | 9123456782 | Bangalore | 2023-07-10 |
+|       4 | Lakshmi   | Menon    | 9123456783 | Chennai   | 2023-08-05 |
+|       5 | Aditya    | Mishra   | 9123456784 | Kolkata   | 2023-04-18 |
+|       6 | Pooja     | Patil    | 9123456785 | Ahmedabad | 2023-03-12 |
+|       7 | Naveen    | Reddy    | 9123456786 | Hyderabad | 2023-09-01 |
+|       8 | Kavita    | Jain     | 9123456787 | Pune      | 2023-10-08 |
+|       9 | Rohan     | Singh    | 9123456788 | Jaipur    | 2023-02-25 |
+|      10 | Sneha     | Deshmukh | 9123456789 | Lucknow   | 2023-11-14 |
++---------+-----------+----------+------------+-----------+------------+
+10 rows in set (0.004 sec)
+
+MariaDB [rideing_vechicle]> select * from rides;
++--------+---------+----------+---------------------+--------------------------+----------------------------+----------+--------+------------+
+| RideID | RiderID | DriverID | RideDate            | PickupLocation           | DropLocation               | Distance | Fare   | RideStatus |
++--------+---------+----------+---------------------+--------------------------+----------------------------+----------+--------+------------+
+|      1 |       1 |        2 | 2023-12-01 09:15:00 | Connaught Place, Delhi   | DLF Cyber City, Gurgaon    |    25.50 | 520.00 | Completed  |
+|      2 |       2 |        4 | 2023-11-30 14:20:00 | Bandra, Mumbai           | Navi Mumbai                |    30.00 | 600.00 | Completed  |
+|      3 |       3 |        1 | 2023-12-02 08:50:00 | Whitefield, Bangalore    | Electronic City, Bangalore |    22.00 | 450.00 | Completed  |
+|      4 |       4 |        3 | 2023-11-29 18:30:00 | T Nagar, Chennai         | Airport, Chennai           |    18.00 | 390.00 | Completed  |
+|      5 |       5 |        5 | 2023-11-28 11:10:00 | Salt Lake, Kolkata       | Howrah Station, Kolkata    |    15.50 | 350.00 | Cancelled  |
+|      6 |       6 |        6 | 2023-12-03 07:45:00 | Navrangpura, Ahmedabad   | S G Highway, Ahmedabad     |    12.00 | 270.00 | Completed  |
+|      7 |       7 |        7 | 2023-11-27 16:15:00 | Banjara Hills, Hyderabad | Madhapur, Hyderabad        |    10.50 | 220.00 | Completed  |
+|      8 |       8 |        8 | 2023-12-01 13:05:00 | Viman Nagar, Pune        | Kothrud, Pune              |    14.00 | 310.00 | Ongoing    |
+|      9 |       9 |        9 | 2023-11-30 09:00:00 | MI Road, Jaipur          | Malviya Nagar, Jaipur      |    17.00 | 380.00 | Completed  |
+|     10 |      10 |       10 | 2023-11-25 10:20:00 | Hazratganj, Lucknow      | Alambagh, Lucknow          |     8.00 | 180.00 | Completed  |
++--------+---------+----------+---------------------+--------------------------+----------------------------+----------+--------+------------+
+10 rows in set (0.004 sec)
+
+MariaDB [rideing_vechicle]> SELECT FirstName, LastName, Phone, City
+    -> FROM drivers
+    -> WHERE Rating >= 4.5;
++-----------+----------+------------+---------+
+| FirstName | LastName | Phone      | City    |
++-----------+----------+------------+---------+
+| Rajesh    | Sharma   | 9876543210 | Delhi   |
+| Anita     | Verma    | 9876543211 | Mumbai  |
+| Priya     | Nair     | 9876543213 | Chennai |
+| Amit      | Gupta    | 9876543214 | Kolkata |
+| Sunita    | Rao      | 9876543216 | Pune    |
++-----------+----------+------------+---------+
+5 rows in set (0.001 sec)
+
+MariaDB [rideing_vechicle]> SELECT drivers.DriverID, drivers.FirstName, drivers.LastName, COUNT(rides.RideID) AS TotalRides
+    -> FROM drivers
+    -> JOIN rides ON drivers.DriverID = rides.DriverID
+    -> WHERE rides.RideStatus = 'Completed'
+    -> GROUP BY drivers.DriverID;
++----------+-----------+----------+------------+
+| DriverID | FirstName | LastName | TotalRides |
++----------+-----------+----------+------------+
+|        1 | Rajesh    | Sharma   |          1 |
+|        2 | Anita     | Verma    |          1 |
+|        3 | Vikram    | Singh    |          1 |
+|        4 | Priya     | Nair     |          1 |
+|        6 | Ramesh    | Patel    |          1 |
+|        7 | Sunita    | Rao      |          1 |
+|        9 | Kiran     | Joshi    |          1 |
+|       10 | Manoj     | Desai    |          1 |
++----------+-----------+----------+------------+
+8 rows in set (0.003 sec)
+
+MariaDB [rideing_vechicle]> SELECT riders.FirstName, riders.LastName, riders.Phone
+    -> FROM riders
+    -> LEFT JOIN rides ON riders.RiderID = rides.RiderID
+    -> WHERE rides.RideID IS NULL;
+Empty set (0.003 sec)
+
+MariaDB [rideing_vechicle]> SELECT drivers.DriverID, drivers.FirstName, drivers.LastName, SUM(rides.Fare) AS TotalEarnings
+    -> FROM drivers
+    -> JOIN rides ON drivers.DriverID = rides.DriverID
+    -> WHERE rides.RideStatus = 'Completed'
+    -> GROUP BY drivers.DriverID;
++----------+-----------+----------+---------------+
+| DriverID | FirstName | LastName | TotalEarnings |
++----------+-----------+----------+---------------+
+|        1 | Rajesh    | Sharma   |        450.00 |
+|        2 | Anita     | Verma    |        520.00 |
+|        3 | Vikram    | Singh    |        390.00 |
+|        4 | Priya     | Nair     |        600.00 |
+|        6 | Ramesh    | Patel    |        270.00 |
+|        7 | Sunita    | Rao      |        220.00 |
+|        9 | Kiran     | Joshi    |        380.00 |
+|       10 | Manoj     | Desai    |        180.00 |
++----------+-----------+----------+---------------+
+8 rows in set (0.002 sec)
+
+MariaDB [rideing_vechicle]> SELECT rides.RiderID, riders.FirstName, riders.LastName, MAX(rides.RideDate) AS MostRecentRide
+    -> FROM rides
+    -> JOIN riders ON rides.RiderID = riders.RiderID
+    -> GROUP BY rides.RiderID;
++---------+-----------+----------+---------------------+
+| RiderID | FirstName | LastName | MostRecentRide      |
++---------+-----------+----------+---------------------+
+|       1 | Sandeep   | Yadav    | 2023-12-01 09:15:00 |
+|       2 | Meena     | Kumari   | 2023-11-30 14:20:00 |
+|       3 | Ravi      | Sharma   | 2023-12-02 08:50:00 |
+|       4 | Lakshmi   | Menon    | 2023-11-29 18:30:00 |
+|       5 | Aditya    | Mishra   | 2023-11-28 11:10:00 |
+|       6 | Pooja     | Patil    | 2023-12-03 07:45:00 |
+|       7 | Naveen    | Reddy    | 2023-11-27 16:15:00 |
+|       8 | Kavita    | Jain     | 2023-12-01 13:05:00 |
+|       9 | Rohan     | Singh    | 2023-11-30 09:00:00 |
+|      10 | Sneha     | Deshmukh | 2023-11-25 10:20:00 |
++---------+-----------+----------+---------------------+
+10 rows in set (0.001 sec)
+
+MariaDB [rideing_vechicle]> SELECT riders.City, COUNT(rides.RideID) AS TotalRides
+    -> FROM rides
+    -> JOIN riders ON rides.RiderID = riders.RiderID
+    -> GROUP BY riders.City;
++-----------+------------+
+| City      | TotalRides |
++-----------+------------+
+| Ahmedabad |          1 |
+| Bangalore |          1 |
+| Chennai   |          1 |
+| Delhi     |          1 |
+| Hyderabad |          1 |
+| Jaipur    |          1 |
+| Kolkata   |          1 |
+| Lucknow   |          1 |
+| Mumbai    |          1 |
+| Pune      |          1 |
++-----------+------------+
+10 rows in set (0.003 sec)
+
+MariaDB [rideing_vechicle]>

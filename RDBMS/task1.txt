@@ -1,0 +1,289 @@
+MariaDB [(none)]> show databases;
++---------------------+
+| Database            |
++---------------------+
+| dbclass             |
+| information_schema  |
+| management          |
+| mysql               |
+| performance_schema  |
+| phpmyadmin          |
+| pythontest          |
+| student_management  |
+| test                |
+| testdb              |
+| university_database |
+| user                |
+| wscubetech          |
++---------------------+
+13 rows in set (0.004 sec)
+
+MariaDB [(none)]> use university_database;
+Database changed
+MariaDB [university_database]> show tables;
++-------------------------------+
+| Tables_in_university_database |
++-------------------------------+
+| courses                       |
+| departement_table             |
+| enrollments                   |
+| professors                    |
+| student                       |
++-------------------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [university_database]> desc student;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| student_id       | int(11)      | NO   | PRI | NULL    |       |
+| first_name       | varchar(100) | YES  |     | NULL    |       |
+| last_name        | varchar(100) | YES  |     | NULL    |       |
+| email            | varchar(100) | YES  |     | NULL    |       |
+| phone            | varchar(20)  | YES  |     | NULL    |       |
+| date_of_birth    | date         | YES  |     | NULL    |       |
+| enrollement_date | date         | YES  |     | NULL    |       |
+| deparement_id    | int(11)      | YES  | MUL | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+8 rows in set (0.018 sec)
+
+MariaDB [university_database]> desc courese;
+ERROR 1146 (42S02): Table 'university_database.courese' doesn't exist
+MariaDB [university_database]> desc courses;
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| course_id      | int(11)      | NO   | PRI | NULL    |       |
+| course_name    | varchar(100) | YES  |     | NULL    |       |
+| departement_id | int(11)      | YES  | MUL | NULL    |       |
+| professor_id   | int(11)      | YES  | MUL | NULL    |       |
+| credits        | int(11)      | YES  |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
+5 rows in set (0.020 sec)
+
+MariaDB [university_database]> desc departement_table;
++-----------------+--------------+------+-----+---------+-------+
+| Field           | Type         | Null | Key | Default | Extra |
++-----------------+--------------+------+-----+---------+-------+
+| department_id   | int(11)      | NO   | PRI | NULL    |       |
+| department_name | varchar(100) | YES  |     | NULL    |       |
++-----------------+--------------+------+-----+---------+-------+
+2 rows in set (0.022 sec)
+
+MariaDB [university_database]> desc  professors;
++--------------+--------------+------+-----+---------+-------+
+| Field        | Type         | Null | Key | Default | Extra |
++--------------+--------------+------+-----+---------+-------+
+| professor_id | int(11)      | NO   | PRI | NULL    |       |
+| first_name   | varchar(100) | YES  |     | NULL    |       |
+| last_name    | varchar(100) | YES  |     | NULL    |       |
+| email        | varchar(100) | YES  |     | NULL    |       |
+| phone        | varchar(20)  | YES  |     | NULL    |       |
++--------------+--------------+------+-----+---------+-------+
+5 rows in set (0.017 sec)
+
+MariaDB [university_database]> desc  enrollments;
++-----------------+------------+------+-----+---------+-------+
+| Field           | Type       | Null | Key | Default | Extra |
++-----------------+------------+------+-----+---------+-------+
+| enrollment_id   | int(11)    | NO   | PRI | NULL    |       |
+| student_id      | int(11)    | YES  | MUL | NULL    |       |
+| course_id       | int(11)    | YES  | MUL | NULL    |       |
+| enrollment_date | date       | YES  |     | NULL    |       |
+| grade           | varchar(5) | YES  |     | NULL    |       |
++-----------------+------------+------+-----+---------+-------+
+5 rows in set (0.015 sec)
+
+MariaDB [university_database]> select * from student;
++------------+------------+-----------+-------------------------+------------+---------------+------------------+---------------+
+| student_id | first_name | last_name | email                   | phone      | date_of_birth | enrollement_date | deparement_id |
++------------+------------+-----------+-------------------------+------------+---------------+------------------+---------------+
+|          1 | Arjun      | Sharma    | arjun.sharma@example.in | 9876543210 | 2002-04-12    | 2023-08-21       |             1 |
+|          2 | Priya      | Verma     | priya.verma@example.in  | 8765432109 | 2001-09-18    | 2023-08-21       |             2 |
+|          3 | Rohit      | Gupta     | rohit.gupta@example.in  | 7654321098 | 2000-05-22    | 2023-08-21       |             1 |
+|          4 | Anjali     | Patel     | anjali.patel@example.in | 6543210987 | 2003-01-15    | 2023-08-21       |             3 |
+|          5 | Vikram     | Reddy     | vikram.reddy@example.in | 5432109876 | 2001-11-07    | 2023-08-21       |             2 |
+|          6 | Sanya      | Desai     | sanya.desai@example.in  | 4321098765 | 2002-08-30    | 2023-08-21       |             3 |
+|          7 | Raj        | Kumar     | raj.kumar@example.in    | 3210987654 | 2001-02-25    | 2023-08-21       |             1 |
+|          8 | Neha       | Singh     | neha.singh@example.in   | 2109876543 | 2000-07-19    | 2023-08-21       |             2 |
+|          9 | Amit       | Jain      | amit.jain@example.in    | 1098765432 | 2003-03-08    | 2023-08-21       |             3 |
+|         10 | Isha       | Nair      | isha.nair@example.in    | 9988776655 | 2002-12-29    | 2023-08-21       |             1 |
++------------+------------+-----------+-------------------------+------------+---------------+------------------+---------------+
+10 rows in set (0.005 sec)
+
+MariaDB [university_database]> select * from Bye
+
+abhay@ABHAYPC c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 9
+Server version: 10.4.32-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use university_database;
+Database changed
+MariaDB [university_database]> select * from courses;
++-----------+--------------------------------+----------------+--------------+---------+
+| course_id | course_name                    | departement_id | professor_id | credits |
++-----------+--------------------------------+----------------+--------------+---------+
+|         1 | Computer Science Fundamentals  |              1 |            1 |       4 |
+|         2 | Database Management Systems    |              2 |            2 |       3 |
+|         3 | Data Structures and Algorithms |              1 |            3 |       4 |
+|         4 | Operating Systems              |              3 |            4 |       3 |
+|         5 | Software Engineering           |              2 |            5 |       3 |
+|         6 | Web Development                |              1 |            6 |       4 |
+|         7 | Computer Networks              |              3 |            7 |       3 |
+|         8 | Artificial Intelligence        |              2 |            8 |       4 |
+|         9 | Machine Learning               |              1 |            9 |       4 |
+|        10 | Cloud Computing                |              3 |           10 |       3 |
++-----------+--------------------------------+----------------+--------------+---------+
+10 rows in set (0.001 sec)
+
+MariaDB [university_database]> select * from department_table;
+ERROR 1146 (42S02): Table 'university_database.department_table' doesn't exist
+MariaDB [university_database]> select * from departement_table;
++---------------+------------------+
+| department_id | department_name  |
++---------------+------------------+
+|             1 | Computer Science |
+|             2 | Mathematics      |
+|             3 | Physics          |
++---------------+------------------+
+3 rows in set (0.000 sec)
+
+MariaDB [university_database]> select * professors;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'professors' at line 1
+MariaDB [university_database]> select * from professors;
++--------------+------------+-----------+----------------------------+------------+
+| professor_id | first_name | last_name | email                      | phone      |
++--------------+------------+-----------+----------------------------+------------+
+|            1 | Amit       | Sharma    | amit.sharma@example.in     | 9876501234 |
+|            2 | Preeti     | Gupta     | preeti.gupta@example.in    | 8765432101 |
+|            3 | Rajeev     | Reddy     | rajeev.reddy@example.in    | 7654321012 |
+|            4 | Sneha      | Patel     | sneha.patel@example.in     | 6543210123 |
+|            5 | Vikas      | Nair      | vikas.nair@example.in      | 5432101234 |
+|            6 | Anjali     | Deshmukh  | anjali.deshmukh@example.in | 4321012345 |
+|            7 | Rohit      | Verma     | rohit.verma@example.in     | 3210123456 |
+|            8 | Meera      | Joshi     | meera.joshi@example.in     | 2101234567 |
+|            9 | Karan      | Singh     | karan.singh@example.in     | 1091234568 |
+|           10 | Divya      | Kumar     | divya.kumar@example.in     | 9987654321 |
++--------------+------------+-----------+----------------------------+------------+
+10 rows in set (0.000 sec)
+
+MariaDB [university_database]> select * from enrollment;
+ERROR 1146 (42S02): Table 'university_database.enrollment' doesn't exist
+MariaDB [university_database]> select * from enrollments;
++---------------+------------+-----------+-----------------+-------+
+| enrollment_id | student_id | course_id | enrollment_date | grade |
++---------------+------------+-----------+-----------------+-------+
+|             1 |          1 |         1 | 2023-08-22      | A     |
+|             2 |          2 |         2 | 2023-08-22      | B     |
+|             3 |          3 |         3 | 2023-08-22      | A     |
+|             4 |          4 |         4 | 2023-08-22      | C     |
+|             5 |          5 |         5 | 2023-08-22      | B     |
+|             6 |          6 |         6 | 2023-08-22      | A     |
+|             7 |          7 |         7 | 2023-08-22      | A     |
+|             8 |          8 |         8 | 2023-08-22      | B     |
+|             9 |          9 |         9 | 2023-08-22      | C     |
+|            10 |         10 |        10 | 2023-08-22      | A     |
++---------------+------------+-----------+-----------------+-------+
+10 rows in set (0.001 sec)
+
+MariaDB [university_database]> SELECT
+    ->     d.department_name,
+    ->     COUNT(s.student_id) AS total_students
+    -> FROM
+    ->     student s
+    -> JOIN
+    ->     departement_table d ON s.deparement_id = d.department_id
+    -> GROUP BY
+    ->     d.department_name;
++------------------+----------------+
+| department_name  | total_students |
++------------------+----------------+
+| Computer Science |              4 |
+| Mathematics      |              3 |
+| Physics          |              3 |
++------------------+----------------+
+3 rows in set (0.003 sec)
+
+MariaDB [university_database]> SELECT
+    ->     c.course_name
+    -> FROM
+    ->     courses c
+    -> JOIN
+    ->     professors p ON c.professor_id = p.professor_id
+    -> WHERE
+    ->     p.professor_id = 1;
++-------------------------------+
+| course_name                   |
++-------------------------------+
+| Computer Science Fundamentals |
++-------------------------------+
+1 row in set (0.001 sec)
+
+MariaDB [university_database]> SELECT
+    ->     c.course_name,
+    ->     AVG(CASE
+    ->             WHEN e.grade = 'A' THEN 4
+    ->             WHEN e.grade = 'B' THEN 3
+    ->             WHEN e.grade = 'C' THEN 2
+    ->             WHEN e.grade = 'D' THEN 1
+    ->             ELSE 0
+    ->         END) AS average_grade
+    -> FROM
+    ->     enrollments e
+    -> JOIN
+    ->     courses c ON e.course_id = c.course_id
+    -> GROUP BY
+    ->     c.course_name;
++--------------------------------+---------------+
+| course_name                    | average_grade |
++--------------------------------+---------------+
+| Artificial Intelligence        |        3.0000 |
+| Cloud Computing                |        4.0000 |
+| Computer Networks              |        4.0000 |
+| Computer Science Fundamentals  |        4.0000 |
+| Data Structures and Algorithms |        4.0000 |
+| Database Management Systems    |        3.0000 |
+| Machine Learning               |        2.0000 |
+| Operating Systems              |        2.0000 |
+| Software Engineering           |        3.0000 |
+| Web Development                |        4.0000 |
++--------------------------------+---------------+
+10 rows in set (0.003 sec)
+
+MariaDB [university_database]> SELECT
+    ->     s.student_id,
+    ->     s.first_name,
+    ->     s.last_name,
+    ->     s.email
+    -> FROM
+    ->     student s
+    -> LEFT JOIN
+    ->     enrollments e ON s.student_id = e.student_id
+    -> WHERE
+    ->     e.enrollment_id IS NULL;
+Empty set (0.001 sec)
+
+MariaDB [university_database]> SELECT
+    ->     d.department_name,
+    ->     COUNT(c.course_id) AS num_courses
+    -> FROM
+    ->     departement_table d
+    -> LEFT JOIN
+    ->     courses c ON d.department_id = c.departement_id
+    -> GROUP BY
+    ->     d.department_name;
++------------------+-------------+
+| department_name  | num_courses |
++------------------+-------------+
+| Computer Science |           4 |
+| Mathematics      |           3 |
+| Physics          |           3 |
++------------------+-------------+
+3 rows in set (0.001 sec)

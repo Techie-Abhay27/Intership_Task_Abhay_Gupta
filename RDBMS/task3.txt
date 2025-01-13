@@ -1,0 +1,164 @@
+MariaDB [(none)]> use retail_store;
+Database changed
+MariaDB [retail_store]> show tables;
++------------------------+
+| Tables_in_retail_store |
++------------------------+
+| customers              |
+| orderdetails           |
+| orders                 |
+| payments               |
+| products               |
++------------------------+
+5 rows in set (0.001 sec)
+
+MariaDB [retail_store]> slect * from  customers;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'slect * from  customers' at line 1
+MariaDB [retail_store]> select * from  customers;
++-------------+------------+-----------+----------------------------+------------+----------------------------------+------------+
+| customer_id | first_name | last_name | email                      | phone      | address                          | join_date  |
++-------------+------------+-----------+----------------------------+------------+----------------------------------+------------+
+|           1 | Amit       | Sharma    | amit.sharma@example.com    | 9876543210 | 123 Green St, New Delhi, India   | 2023-03-15 |
+|           2 | Priya      | Verma     | priya.verma@example.com    | 9876543211 | 456 Blue Rd, Mumbai, India       | 2023-05-20 |
+|           3 | Rahul      | Singh     | rahul.singh@example.com    | 9876543212 | 789 Red Blvd, Bangalore, India   | 2023-06-10 |
+|           4 | Sneha      | Nair      | sneha.nair@example.com     | 9876543213 | 987 Yellow Ln, Chennai, India    | 2023-07-05 |
+|           5 | Vikram     | Patel     | vikram.patel@example.com   | 9876543214 | 654 Violet Ave, Ahmedabad, India | 2023-04-18 |
+|           6 | Meera      | Rao       | meera.rao@example.com      | 9876543215 | 321 Orange Dr, Hyderabad, India  | 2023-09-01 |
+|           7 | Sandeep    | Kumar     | sandeep.kumar@example.com  | 9876543216 | 159 Greenway, Pune, India        | 2023-10-08 |
+|           8 | Anjali     | Gupta     | anjali.gupta@example.com   | 9876543217 | 753 Purple St, Jaipur, India     | 2023-02-25 |
+|           9 | Rohan      | Deshmukh  | rohan.deshmukh@example.com | 9876543218 | 951 Pink St, Lucknow, India      | 2023-11-14 |
+|          10 | Lakshmi    | Menon     | lakshmi.menon@example.com  | 9876543219 | 852 Indigo Blvd, Cochin, India   | 2023-01-12 |
++-------------+------------+-----------+----------------------------+------------+----------------------------------+------------+
+10 rows in set (0.011 sec)
+
+MariaDB [retail_store]> select * from  orderdetails;
++-----------------+----------+------------+----------+------------+
+| order_detail_id | order_id | product_id | quantity | unit_price |
++-----------------+----------+------------+----------+------------+
+|               1 |        1 |          1 |        1 |   74999.00 |
+|               2 |        1 |          3 |        1 |   24999.00 |
+|               3 |        2 |          4 |        2 |    8999.00 |
+|               4 |        2 |          5 |        1 |   12999.00 |
+|               5 |        3 |          7 |        1 |    3499.00 |
+|               6 |        3 |          8 |        1 |     999.00 |
+|               7 |        4 |          2 |        1 |   31999.00 |
+|               8 |        4 |          9 |        1 |   13999.00 |
+|               9 |        5 |          6 |        1 |    3499.00 |
+|              10 |        5 |         10 |        1 |    6499.00 |
+|              11 |        6 |          4 |        2 |    8999.00 |
+|              12 |        7 |          3 |        2 |   24999.00 |
+|              13 |        8 |          2 |        1 |   31999.00 |
+|              14 |        9 |          5 |        1 |   12999.00 |
+|              15 |       10 |          7 |        1 |    3499.00 |
++-----------------+----------+------------+----------+------------+
+15 rows in set (0.004 sec)
+
+MariaDB [retail_store]> select * from orders;
++----------+-------------+------------+--------------+--------------+
+| order_id | customer_id | order_date | total_amount | order_status |
++----------+-------------+------------+--------------+--------------+
+|        1 |           1 | 2023-03-15 |     79999.00 | Shipped      |
+|        2 |           2 | 2023-05-20 |     63998.00 | Delivered    |
+|        3 |           3 | 2023-06-10 |    104997.00 | Pending      |
+|        4 |           4 | 2023-07-05 |     39995.00 | Shipped      |
+|        5 |           5 | 2023-04-18 |     17994.00 | Delivered    |
+|        6 |           6 | 2023-09-01 |      6298.00 | Pending      |
+|        7 |           7 | 2023-10-08 |     54998.00 | Shipped      |
+|        8 |           8 | 2023-02-25 |      3998.00 | Delivered    |
+|        9 |           9 | 2023-11-14 |     12998.00 | Shipped      |
+|       10 |          10 | 2023-01-12 |      8998.00 | Delivered    |
++----------+-------------+------------+--------------+--------------+
+10 rows in set (0.003 sec)
+
+MariaDB [retail_store]> select * from  payments;
++------------+----------+--------------+----------------+----------------+
+| payment_id | order_id | payment_date | payment_amount | payment_method |
++------------+----------+--------------+----------------+----------------+
+|         21 |        1 | 2023-03-16   |       79999.00 | Credit Card    |
+|         40 |        2 | 2023-05-21   |       63998.00 | PayPal         |
+|         41 |        3 | 2023-06-12   |      104997.00 | Credit Card    |
+|         42 |        4 | 2023-07-06   |       39995.00 | Debit Card     |
+|         43 |        5 | 2023-04-19   |       17994.00 | Cash           |
+|         44 |        6 | 2023-09-02   |        6298.00 | Credit Card    |
+|         45 |        7 | 2023-10-09   |       54998.00 | Debit Card     |
+|         46 |        8 | 2023-02-26   |        3998.00 | Cash           |
+|         47 |        9 | 2023-11-15   |       12998.00 | Cash           |
+|         48 |       10 | 2023-01-13   |        8998.00 | PayPal         |
++------------+----------+--------------+----------------+----------------+
+10 rows in set (0.003 sec)
+
+MariaDB [retail_store]> select * from products;
++------------+----------------------------------+-----------------+----------+----------------+
+| product_id | product_name                     | category        | price    | stock_quantity |
++------------+----------------------------------+-----------------+----------+----------------+
+|          1 | Apple iPhone 14                  | Electronics     | 74999.00 |             50 |
+|          2 | Samsung Galaxy A54               | Electronics     | 31999.00 |             80 |
+|          3 | Sony WH-1000XM5                  | Electronics     | 24999.00 |             40 |
+|          4 | Nike Air Max 270                 | Footwear        |  8999.00 |            100 |
+|          5 | Adidas Ultraboost                | Footwear        | 12999.00 |             60 |
+|          6 | Levi's Slim Fit Jeans            | Apparel         |  3499.00 |            150 |
+|          7 | H&M Cotton T-Shirt               | Apparel         |   999.00 |            200 |
+|          8 | Bose SoundLink Bluetooth Speaker | Electronics     | 13999.00 |             30 |
+|          9 | Philips LED Smart TV 55"         | Home Appliances | 49999.00 |             25 |
+|         10 | Crompton Water Heater            | Home Appliances |  6499.00 |             70 |
++------------+----------------------------------+-----------------+----------+----------------+
+10 rows in set (0.005 sec)
+
+MariaDB [retail_store]> SELECT c.customer_id, c.first_name, c.last_name, COUNT(o.order_id) AS total_orders
+    -> FROM customers c
+    -> JOIN orders o ON c.customer_id = o.customer_id
+    -> GROUP BY c.customer_id, c.first_name, c.last_name;
++-------------+------------+-----------+--------------+
+| customer_id | first_name | last_name | total_orders |
++-------------+------------+-----------+--------------+
+|           1 | Amit       | Sharma    |            1 |
+|           2 | Priya      | Verma     |            1 |
+|           3 | Rahul      | Singh     |            1 |
+|           4 | Sneha      | Nair      |            1 |
+|           5 | Vikram     | Patel     |            1 |
+|           6 | Meera      | Rao       |            1 |
+|           7 | Sandeep    | Kumar     |            1 |
+|           8 | Anjali     | Gupta     |            1 |
+|           9 | Rohan      | Deshmukh  |            1 |
+|          10 | Lakshmi    | Menon     |            1 |
++-------------+------------+-----------+--------------+
+10 rows in set (0.001 sec)
+
+MariaDB [retail_store]> SELECT p.product_id, p.product_name, SUM(od.quantity * od.unit_price) AS total_sales
+    -> FROM products p
+    -> JOIN orderdetails od ON p.product_id = od.product_id
+    -> GROUP BY p.product_id, p.product_name;
++------------+----------------------------------+-------------+
+| product_id | product_name                     | total_sales |
++------------+----------------------------------+-------------+
+|          1 | Apple iPhone 14                  |    74999.00 |
+|          2 | Samsung Galaxy A54               |    63998.00 |
+|          3 | Sony WH-1000XM5                  |    74997.00 |
+|          4 | Nike Air Max 270                 |    35996.00 |
+|          5 | Adidas Ultraboost                |    25998.00 |
+|          6 | Levi's Slim Fit Jeans            |     3499.00 |
+|          7 | H&M Cotton T-Shirt               |     6998.00 |
+|          8 | Bose SoundLink Bluetooth Speaker |      999.00 |
+|          9 | Philips LED Smart TV 55"         |    13999.00 |
+|         10 | Crompton Water Heater            |     6499.00 |
++------------+----------------------------------+-------------+
+10 rows in set (0.003 sec)
+
+MariaDB [retail_store]> SELECT p.product_name, p.price
+    -> FROM products p
+    -> ORDER BY p.price DESC
+    -> LIMIT 1;
++-----------------+----------+
+| product_name    | price    |
++-----------------+----------+
+| Apple iPhone 14 | 74999.00 |
++-----------------+----------+
+1 row in set (0.001 sec)
+
+MariaDB [retail_store]> SELECT c.customer_id, c.first_name, c.last_name, o.order_date
+    -> FROM customers c
+    -> JOIN orders o ON c.customer_id = o.customer_id
+    -> WHERE o.order_date >= CURDATE() - INTERVAL 30 DAY;
+Empty set (0.001 sec)
+
+MariaDB [retail_store]>
